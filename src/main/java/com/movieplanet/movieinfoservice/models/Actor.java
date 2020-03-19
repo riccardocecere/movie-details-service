@@ -10,7 +10,7 @@ public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false, length = 20, updatable = false)
-    private Long producerId;
+    private Long actorId;
 
     @Column(name="name", nullable = false, length = 1000)
     private String name;
@@ -21,21 +21,21 @@ public class Actor {
     @Column(name="age", nullable = false)
     private String age;
 
-    @OneToMany(mappedBy = "actors")
+    @ManyToMany(mappedBy = "actors")
     private List<Movie> movies;
 
     public Actor() {}
 
-    public Actor(Long producerId, String name, String surname, String age, List<Movie> movies) {
-        this.producerId = producerId;
+    public Actor(Long actorId, String name, String surname, String age, List<Movie> movies) {
+        this.actorId = actorId;
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.movies = movies;
     }
 
-    public Long getProducerId() {
-        return producerId;
+    public Long getActorId() {
+        return actorId;
     }
 
     public String getName() {
